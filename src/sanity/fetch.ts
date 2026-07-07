@@ -7,10 +7,6 @@ import {
   articlesByCategoryQuery,
   allSlugsQuery,
 } from "./queries";
-import {
-  trendingArticles as mockArticles,
-  featuredArticle as mockFeatured,
-} from "@/data/mock";
 import type { PortableTextBlock } from "@portabletext/react";
 
 export interface SanityImage {
@@ -72,7 +68,7 @@ function withDefaults<T extends Partial<ArticleListItem>>(
 
 export async function getAllArticles(): Promise<ArticleListItem[]> {
   if (!sanityClient || !isSanityConfigured) {
-    return mockArticles.map((a) => withDefaults(a));
+    return [];
   }
   try {
     const results = await sanityClient.fetch(allArticlesQuery);
@@ -85,7 +81,7 @@ export async function getAllArticles(): Promise<ArticleListItem[]> {
 
 export async function getFeaturedArticle(): Promise<ArticleListItem | null> {
   if (!sanityClient || !isSanityConfigured) {
-    return withDefaults(mockFeatured);
+    return null;
   }
   try {
     const result = await sanityClient.fetch(featuredArticleQuery);
@@ -102,38 +98,11 @@ export async function getFeaturedArticle(): Promise<ArticleListItem | null> {
   }
 }
 
-function mockBodyFor(slug: string): PortableTextBlock[] | null {
-  const mock = [...mockArticles, mockFeatured].find((a) => a.slug === slug);
-  if (!mock) return null;
-  const paragraphs = [
-    `This is a placeholder version of "${mock.title}" so you can see how an article looks on Id Eat That. Once Chef Pari publishes the real version from the Studio, this stub disappears automatically.`,
-    "The site is wired up to a CMS — articles are written from a visual dashboard at /studio. No code, no Markdown, just type and publish.",
-    "Until then, you're looking at sample content. Walk around. Click into a category. Tap the reactions at the bottom. The site already works — it just needs Chef Pari to start cooking.",
-  ];
-  return paragraphs.map(
-    (text, i) =>
-      ({
-        _type: "block",
-        _key: `mock-${i}`,
-        style: "normal",
-        children: [
-          { _type: "span", _key: `mock-s-${i}`, text, marks: [] },
-        ],
-        markDefs: [],
-      }) as unknown as PortableTextBlock,
-  );
-}
-
 export async function getArticleBySlug(
   slug: string,
 ): Promise<FullArticle | null> {
   if (!sanityClient || !isSanityConfigured) {
-    const mock = [...mockArticles, mockFeatured].find((a) => a.slug === slug);
-    if (!mock) return null;
-    return {
-      ...withDefaults(mock),
-      body: mockBodyFor(slug) || [],
-    };
+    return null;
   }
   try {
     const result = (await sanityClient.fetch(articleBySlugQuery, {
@@ -153,9 +122,7 @@ export async function getArticlesByCategory(
   category: string,
 ): Promise<ArticleListItem[]> {
   if (!sanityClient || !isSanityConfigured) {
-    return mockArticles
-      .filter((a) => a.category === category)
-      .map((a) => withDefaults(a));
+    return [];
   }
   try {
     const results = await sanityClient.fetch(articlesByCategoryQuery, {
@@ -171,9 +138,7 @@ export async function getArticlesByCategory(
 
 export async function getAllSlugs(): Promise<string[]> {
   if (!sanityClient || !isSanityConfigured) {
-    return [...mockArticles, mockFeatured]
-      .map((a) => a.slug)
-      .filter((v, i, arr) => arr.indexOf(v) === i);
+    return [];
   }
   try {
     const result = await sanityClient.fetch(allSlugsQuery);
