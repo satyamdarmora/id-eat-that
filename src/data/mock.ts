@@ -1,0 +1,158 @@
+export const categories = [
+  {
+    slug: "appetizers",
+    name: "Appetizers",
+    tagline: "Quick bites for curious minds",
+    description: "2-minute reads, daily tips, psychology snacks you can consume on the go.",
+    icon: "🍿",
+    color: "bg-soft-pink",
+    borderColor: "border-primary",
+    articleCount: 12,
+  },
+  {
+    slug: "main-course",
+    name: "Main Course",
+    tagline: "Deep dives that fill you up",
+    description: "Research breakdowns, theories explained, the meaty stuff of psychology.",
+    icon: "🍛",
+    color: "bg-soft-yellow",
+    borderColor: "border-golden",
+    articleCount: 8,
+  },
+  {
+    slug: "comfort-food",
+    name: "Comfort Food",
+    tagline: "Warm reads for the soul",
+    description: "Self-help, mental wellness, and the kind of psychology that hugs you back.",
+    icon: "🍵",
+    color: "bg-soft-sage",
+    borderColor: "border-sage",
+    articleCount: 15,
+  },
+  {
+    slug: "spicy-takes",
+    name: "Spicy Takes",
+    tagline: "Hot opinions, handle with care",
+    description: "Debates, controversial views, and things your psychology textbook won't tell you.",
+    icon: "🌶️",
+    color: "bg-soft-pink",
+    borderColor: "border-coral",
+    articleCount: 6,
+  },
+  {
+    slug: "desserts",
+    name: "Desserts",
+    tagline: "Fun facts & sweet discoveries",
+    description: "Quizzes, 'did you know' moments, and psychology's most delightful surprises.",
+    icon: "🍰",
+    color: "bg-soft-lavender",
+    borderColor: "border-lavender",
+    articleCount: 10,
+  },
+  {
+    slug: "chefs-table",
+    name: "Chef's Table",
+    tagline: "Exclusive conversations",
+    description: "Guest perspectives, expert interviews, and voices beyond the kitchen.",
+    icon: "👨‍🍳",
+    color: "bg-soft-yellow",
+    borderColor: "border-golden",
+    articleCount: 4,
+  },
+];
+
+export const featuredArticle = {
+  slug: "why-you-cant-stop-scrolling",
+  title: "Why You Can't Stop Scrolling (And Your Brain Loves It)",
+  excerpt:
+    "Your phone isn't addictive by accident. Here's the dopamine loop that tech companies engineered — and how to break free without going full monk mode.",
+  category: "Main Course",
+  mood: "fun" as const,
+  readTime: "7 min read",
+  date: "Apr 24, 2026",
+  image: null,
+  reactions: { mindblown: 142, lightbulb: 89, felt: 67, thinking: 34 },
+};
+
+export const trendingArticles = [
+  {
+    slug: "psychology-of-first-impressions",
+    title: "The 7-Second Verdict: Psychology of First Impressions",
+    excerpt: "You've already been judged. Here's what happened in those 7 seconds.",
+    category: "Appetizers",
+    mood: "fun" as const,
+    readTime: "3 min read",
+    date: "Apr 22, 2026",
+    reactions: { mindblown: 98, lightbulb: 56, felt: 23, thinking: 45 },
+  },
+  {
+    slug: "attachment-styles-explained",
+    title: "Your Attachment Style Is Ruining Your Texts",
+    excerpt: "Why you triple-text or ghost — explained by a theory from the 1960s.",
+    category: "Comfort Food",
+    mood: "serious" as const,
+    readTime: "6 min read",
+    date: "Apr 20, 2026",
+    reactions: { mindblown: 234, lightbulb: 120, felt: 189, thinking: 67 },
+  },
+  {
+    slug: "color-psychology-wardrobe",
+    title: "What Your Wardrobe Color Says About Your Mood",
+    excerpt: "Wearing all black isn't depression — it's a power move. Here's the science.",
+    category: "Desserts",
+    mood: "fun" as const,
+    readTime: "4 min read",
+    date: "Apr 18, 2026",
+    reactions: { mindblown: 76, lightbulb: 145, felt: 34, thinking: 12 },
+  },
+  {
+    slug: "gaslighting-vs-disagreement",
+    title: "Gaslighting or Just a Disagreement? Know the Difference.",
+    excerpt: "The internet overuses this word. Let's actually understand what it means.",
+    category: "Spicy Takes",
+    mood: "serious" as const,
+    readTime: "8 min read",
+    date: "Apr 16, 2026",
+    reactions: { mindblown: 312, lightbulb: 98, felt: 256, thinking: 178 },
+  },
+  {
+    slug: "study-hacks-backed-by-science",
+    title: "Study Hacks That Actually Work (Not the TikTok Ones)",
+    excerpt: "Pomodoro is fine. But spaced repetition? That's the real cheat code.",
+    category: "Appetizers",
+    mood: "fun" as const,
+    readTime: "5 min read",
+    date: "Apr 14, 2026",
+    reactions: { mindblown: 189, lightbulb: 267, felt: 45, thinking: 23 },
+  },
+];
+
+export const weeklyPoll = {
+  question: "Which defense mechanism do you use the most?",
+  options: [
+    { label: "Humor (laughing it off)", votes: 342 },
+    { label: "Denial (what problem?)", votes: 187 },
+    { label: "Projection (it's YOU who's weird)", votes: 256 },
+    { label: "Rationalization (I have my reasons)", votes: 198 },
+  ],
+};
+
+export const marqueeWords = [
+  "APPETIZERS",
+  "MAIN COURSE",
+  "COMFORT FOOD",
+  "SPICY TAKES",
+  "DESSERTS",
+  "CHEF'S TABLE",
+  "FREUD APPROVED",
+  "BRAIN FOOD",
+  "NO JARGON",
+  "JUST FLAVOR",
+];
+
+export const psychQuotes = [
+  "The mind is like an iceberg — it floats with one-seventh showing. — Freud",
+  "Knowing yourself is the beginning of all wisdom. — Aristotle",
+  "We are what we repeatedly do. — Aristotle",
+  "Between stimulus and response there is a space. — Frankl",
+];

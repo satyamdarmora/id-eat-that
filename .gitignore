@@ -19,6 +19,10 @@
 
 # production
 /build
+/dist
+
+# sanity local runtime cache
+.sanity/
 
 # misc
 .DS_Store
