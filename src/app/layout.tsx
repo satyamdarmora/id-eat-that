@@ -21,6 +21,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://id-eat-that.vercel.app"),
   title: "Id Eat That — by Pari Darmora",
   description:
     "A psychology blog by Pari Darmora, Class 12 student at Vasant Valley School, Delhi. Bite-sized psych, deep dives, spicy takes. The id wants what it wants.",

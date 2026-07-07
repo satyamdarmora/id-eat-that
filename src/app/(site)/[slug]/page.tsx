@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -24,6 +25,41 @@ const moodLabel: Record<string, string> = {
 };
 
 export const revalidate = 60;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) {
+    return { title: "Not on the menu — Id Eat That" };
+  }
+
+  const description = article.excerpt || "Psychology served fresh by Chef Pari.";
+  const ogImage = article.heroImage
+    ? urlFor(article.heroImage)?.width(1200).height(630).fit("crop").url()
+    : undefined;
+
+  return {
+    title: `${article.title} — Id Eat That`,
+    description,
+    openGraph: {
+      title: article.title,
+      description,
+      type: "article",
+      url: `/${article.slug}`,
+      images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : undefined,
+    },
+    twitter: {
+      card: ogImage ? "summary_large_image" : "summary",
+      title: article.title,
+      description,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
