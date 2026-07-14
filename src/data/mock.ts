@@ -62,12 +62,12 @@ export const categories = [
 ];
 
 export const weeklyPoll = {
-  question: "Which defense mechanism do you use the most?",
+  question: "Be honest. Last time you bombed a test, what was your first thought?",
   options: [
-    { label: "Humor (laughing it off)", votes: 342 },
-    { label: "Denial (what problem?)", votes: 187 },
-    { label: "Projection (it's YOU who's weird)", votes: 256 },
-    { label: "Rationalization (I have my reasons)", votes: 198 },
+    { label: "That grading was straight-up unfair", votes: 312 },
+    { label: "Those questions were badly written", votes: 274 },
+    { label: "I was just having an off day", votes: 231 },
+    { label: "...I didn't study enough", votes: 89 },
   ],
 };
 
