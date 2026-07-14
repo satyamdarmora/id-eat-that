@@ -6,11 +6,33 @@ import { motion } from "framer-motion";
 export function NewsletterSignup() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email || pending) return;
+
+    setPending(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error ?? "Couldn't sign you up. Try again?");
+        return;
+      }
       setSubmitted(true);
+    } catch {
+      setError("Couldn't reach the kitchen. Check your connection?");
+    } finally {
+      setPending(false);
     }
   };
 
@@ -40,22 +62,32 @@ export function NewsletterSignup() {
           </p>
 
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                required
-                className="flex-1 px-5 py-3 rounded-full border-2 border-white bg-white/10 text-white placeholder-white/50 focus:outline-none focus:bg-white/20 transition-colors"
-              />
-              <button
-                type="submit"
-                className="bg-golden text-deep-plum font-bold px-8 py-3 rounded-full hover:bg-white hover:scale-105 active:scale-95 transition-all whitespace-nowrap"
-              >
-                Subscribe 🍴
-              </button>
-            </form>
+            <>
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                  disabled={pending}
+                  aria-invalid={error ? true : undefined}
+                  className="flex-1 px-5 py-3 rounded-full border-2 border-white bg-white/10 text-white placeholder-white/50 focus:outline-none focus:bg-white/20 transition-colors disabled:opacity-60"
+                />
+                <button
+                  type="submit"
+                  disabled={pending}
+                  className="bg-golden text-deep-plum font-bold px-8 py-3 rounded-full hover:bg-white hover:scale-105 active:scale-95 transition-all whitespace-nowrap disabled:opacity-60 disabled:hover:scale-100"
+                >
+                  {pending ? "Plating up…" : "Subscribe 🍴"}
+                </button>
+              </form>
+              {error && (
+                <p role="alert" className="text-golden text-sm mt-3 font-medium">
+                  {error}
+                </p>
+              )}
+            </>
           ) : (
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
