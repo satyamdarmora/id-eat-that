@@ -62,7 +62,7 @@ export const categories = [
 ];
 
 export const weeklyPoll = {
-  question: "Be honest. When AI hands you the answer, what do you actually do?",
+  question: "AI just served you the answer. What happens next?",
   options: [
     { label: "Copy, paste, submit, sleep", votes: 298 },
     { label: "Skim it so I can explain it if asked", votes: 241 },
