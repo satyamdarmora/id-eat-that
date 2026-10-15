@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, DM_Sans, Caveat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -21,7 +23,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://id-eat-that.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: "Id Eat That — by Pari Darmora",
   description:
     "A psychology blog by Pari Darmora, Class 12 student at Vasant Valley School, Delhi. Bite-sized psych, deep dives, spicy takes. The id wants what it wants.",
@@ -48,6 +50,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-cream text-dark font-body">
         {children}
+        <Analytics />
       </body>
     </html>
   );

@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 import { getAllSlugs } from "@/sanity/fetch";
 import { categories } from "@/data/mock";
 
-const BASE = "https://id-eat-that.vercel.app";
+const BASE = SITE_URL;
+
+// Rebuild hourly so newly published articles show up without a deploy.
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const slugs = await getAllSlugs();
