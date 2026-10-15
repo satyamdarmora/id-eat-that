@@ -62,12 +62,12 @@ export const categories = [
 ];
 
 export const weeklyPoll = {
-  question: "Be honest. Last time you bombed a test, what was your first thought?",
+  question: "Be honest. When AI hands you the answer, what do you actually do?",
   options: [
-    { label: "That grading was straight-up unfair", votes: 312 },
-    { label: "Those questions were badly written", votes: 274 },
-    { label: "I was just having an off day", votes: 231 },
-    { label: "...I didn't study enough", votes: 89 },
+    { label: "Copy, paste, submit, sleep", votes: 298 },
+    { label: "Skim it so I can explain it if asked", votes: 241 },
+    { label: "Try it myself first, then check with AI", votes: 117 },
+    { label: "Make it quiz me instead of telling me", votes: 46 },
   ],
 };
 
